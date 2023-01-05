@@ -1,0 +1,395 @@
+{
+  "Actor": {
+    "types": ["character","npc","vehicle","voidship"],
+    "templates": {
+      "base": {
+        "name": "",
+        "biography": ""
+      },
+      "creature": {
+        "vitals":{
+          "wounds": {
+            "label": "VITAL.WOUNDS",
+            "min": -1,
+            "value": 10,
+            "max": 10
+          },
+          "fatepoints": {
+            "label": "VITAL.FATEPOINTS",
+            "min": 0,
+            "value": 1,
+            "max": 1
+          },
+          "fatigue": {
+            "label": "VITAL.FATIGUE",
+            "min": 0,
+            "value": 0,
+            "max": 10
+          },
+          "insanity": {
+            "label": "VITAL.INSANITY",
+            "min": 0,
+            "value": 0,
+            "max": 100
+          },
+          "corruption": {
+            "label": "VITAL.CORRUPTION",
+            "min": 0,
+            "value": 0,
+            "max": 100
+          },
+          "size": {
+            "label": "VITAL.SIZE",
+            "min": 1,
+            "value": 4,
+            "max": 10
+          },
+          "psyrating": {
+            "label": "VITAL.PSYRATING",
+            "min": 0,
+            "value": 0,
+            "max": 0
+          },
+          "carryingcapacity": {
+            "label": "VITAL.CARRYINGCAPACITY",
+            "min": 0,
+            "value": 0,
+            "max": 0
+          },
+          "initiative": {
+            "label": "VITAL.INITIATIVE",
+            "characteristic": "agility",
+            "base": 3,
+            "adjustment":0
+          }
+        },
+        "characteristics":{
+          "weaponskill": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "ballisticskill": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "strength": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "toughness": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "agility": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "intelligence": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "perception": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "willpower": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "fellowship": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "influence": {
+            "base": 30,
+            "adjustment": 0,
+            "unnatural": 0,
+            "miscmods": 0,
+            "conditions": 0
+          }
+        },
+        "skills": {
+          "acrobatics": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "athletics": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "awareness": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "charm": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "command": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "commerce": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "deceive": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "dodge": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "inquiry": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "interrogation": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "intimidate": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "logic": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "medicae": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "navigatesurface": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "navigatestellar": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "navigatewarp": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "operateaeronautica": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "operatesurface": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "operatevoidship": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "parry": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "psyniscience": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "scrutiny": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "security": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "sleightofhand": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "stealth": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "survival": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "techuse": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          },
+          "trade": {
+            "rank": 0,
+            "miscmods": 0,
+            "conditions": 0
+          }
+        },
+        "mitigations":{
+          "head":{
+            "abbrev": "Head",
+            "armor": 0,
+            "extrat": 0
+          },
+          "body":{
+            "abbrev": "Body",
+            "armor": 0,
+            "extrat": 0
+          },
+          "leftarm":{
+            "abbrev": "L Arm",
+            "armor": 0,
+            "extrat": 0
+          },
+          "rightarm":{
+            "abbrev": "R Arm",
+            "armor": 0,
+            "extrat": 0
+          },
+          "leftleg":{
+            "abbrev": "L Leg",
+            "armor": 0,
+            "extrat": 0
+          },
+          "rightleg":{
+            "abbrev": "R Leg",
+            "armor": 0,
+            "extrat": 0
+          }
+        },
+        "extras": {
+          "etcdef": {
+            "abbrev": "Field",
+            "powerfield": false,
+            "fieldpct": 0,
+            "fieldol": 0
+          }
+        }
+      }
+    },
+    "character": {
+      "templates": ["base","creature"],
+      "experience": 0,
+      "homeworld": "Default",
+      "background": "Default",
+      "role": "Default"
+    }
+  },
+  "Item": {
+    "types": ["lore","talent","gear", "weapon"],
+    "templates": {
+      "base": {
+        "name": "",
+        "description": ""
+      },
+      "physical": {
+        "quantity": 1,
+        "weight": 0
+      },
+      "weapon":{
+        "class": "",
+        "origin":"",
+        "spec":"",
+        "damage": {
+          "static": 0,
+          "dice": 1,
+          "size":10,
+          "type":""
+        },
+        "penetration": 0,
+        "craftsmanship": "",
+        "specialqualities": [],
+        "modifications": [] 
+      }
+    },
+    "lore":{
+      "templates": ["base"],
+      "preset": "custom",
+      "category": "common",
+      "rank": 0,
+      "miscmods": 0,
+      "conditions": 0
+    },
+    "talent": {
+      "tier": 1,
+      "aptitude1": "general",
+      "aptitude2": "general",
+      "prereqs": "",
+      "fluff": "",
+      "crunch":""
+    },
+    "gear": {
+      "templates": ["base","physical"],
+      "effects": "",
+      "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+    },
+    "weapon": {
+      "templates": ["base","physical","weapon"],
+      "range": 0,
+      "rateoffire": {
+        "single": "S",
+        "semi": 0,
+        "full": 0
+      },
+      "clip": {
+        "cur": 0,
+        "max": 0,
+        "ext": 0
+      },
+      "reload": "",
+      "ammo": ""
+    }
+  }
+}

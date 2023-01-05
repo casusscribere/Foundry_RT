@@ -1,0 +1,127 @@
+<form class="{{cssClass}} {{actor.type}}" autocomplete="off">
+  <div>
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+      <div class="avatar">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+      </div>
+      <div class="bio">
+        <div class="wrapper-row">
+          <div class="pill">
+            <label>Name</label>
+            <input name="name" type="text" value="{{actor.name}}" data-dtype="String" placeholder="Name" />
+          </div>
+          <div class="pill">
+            <label for="data.role">Role</label>
+            <input type="text" name="data.role" value="{{data.role}}" data-dtype="String" placeholder="Role"/>
+          </div>
+        </div>
+        <div class="wrapper-row">
+          <div class="pill">
+            <label>Homeworld</label>
+            <input type="text" name="data.homeworld" value="{{data.homeworld}}" data-dtype="String" placeholder="Homeworld"/>
+          </div>
+          <div class="pill">
+            <label>Background</label>
+            <input type="text" name="data.background" value="{{data.background}}" data-dtype="String" placeholder="Background"/>
+          </div>
+        </div>
+        <div class="wrapper-row">
+          <div class="pill">
+            <label>Experience</label>
+            <input type="text" name="data.experience" value="{{data.experience}}" data-dtype="String" placeholder="0"/>
+          </div>
+          <div class="pill">
+            <label>Tarot</label>
+            <input type="text" name="data.description" value="{{data.description}}" data-dtype="String" placeholder="Description"/>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="vitals">
+      <div class="wrapper-row">
+        <div class="pill sm-pill dispcontrols">
+          <div class="pill-content">
+            <nav class="viewmode-tabs tabs"   data-group="secondary">
+              <a class="item" data-tab="view" data-group="secondary">View</a>
+              <a class="item" data-tab="edit" data-group="secondary">Edit</a>
+            </nav>
+          </div>
+        </div>
+        <div class="pill md-pill">
+          <label for="data.vitals.wounds.value" class="resource-label">Wnd</label>
+          <div class="pill-content">
+            <input type="text" name="data.vitals.wounds.value" value="{{data.vitals.wounds.value}}" data-dtype="Number"/>
+            <!--<span> / </span>-->
+            <input type="text" name="data.vitals.wounds.max" value="{{data.vitals.wounds.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+        <div class="pill md-pill">
+          <label for="data.vitals.fatepoints.value" class="resource-label">Fate</label>
+          <div class="pill-content">
+            <input type="text" name="data.vitals.fatepoints.value" value="{{data.vitals.fatepoints.value}}" data-dtype="Number"/>
+            <!--<span> / </span>-->
+            <input type="text" name="data.vitals.fatepoints.max" value="{{data.vitals.fatepoints.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+        <div class="pill md-pill">
+          <label for="data.vitals.psyrating.value" class="resource-label">Ftg</label>
+          <div class="pill-content">
+            <input type="text" name="data.vitals.fatigue.value" value="{{data.vitals.fatigue.value}}" data-dtype="Number"/>
+            <!--<span> / </span>-->
+            <input type="text" name="data.vitals.fatigue.max" value="{{data.vitals.fatigue.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+        <div class="pill md-pill">
+          <label for="data.carryingcapacity.value" class="resource-label">Cap</label>
+          <div class="pill-content">
+            <input type="text" name="data.vitals.carryingcapacity.value" value="{{data.vitals.carryingcapacity.value}}" data-dtype="Number"/>
+            <!--<span> / </span>-->
+            <input type="text" name="data.vitals.carryingcapacity.max" value="{{data.vitals.carryingcapacity.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+      {{!-- Default tab is specified in actor-sheet.mjs --}}
+      <a class="item" data-tab="stats">Stats</a>
+      <a class="item" data-tab="combat">Combat</a>
+      <a class="item" data-tab="talents">Talents</a>
+      <a class="item" data-tab="equipment">Equipment</a>
+      <a class="item" data-tab="effects">Effects</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+      {{!-- Stats Tab --}}
+      <div class="tab stats" data-group="primary" data-tab="stats">
+        {{> "systems/roguetrader/templates/actor/parts/actor-stats.html"}}
+      </div>
+
+      {{!-- Battle Tab --}}
+      <div class="tab combat" data-group="primary" data-tab="combat">
+        {{> "systems/roguetrader/templates/actor/parts/actor-combat.html"}}
+      </div>
+
+      {{!-- Talents Tab --}}
+      <div class="tab talents" data-group="primary" data-tab="talents">
+        {{> "systems/roguetrader/templates/actor/parts/actor-talents.html"}}
+      </div>
+
+      {{!-- Equipment Tab --}}
+      <div class="tab equipment" data-group="primary" data-tab="equipment">
+        {{> "systems/roguetrader/templates/actor/parts/actor-equipment.html"}}
+      </div>
+
+      {{!-- Active Effects Tab --}}
+      <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+        {{> "systems/roguetrader/templates/actor/parts/actor-effects.html"}}
+      </div>
+
+    </section>
+  </div>
+</form>
+

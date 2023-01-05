@@ -1,0 +1,520 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+/*$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Roboto', sans-serif;
+*/
+/*$c-white: #fff;
+$c-black: #000;
+
+$c-dark: #191813;
+$c-faint: #c9c7b8;
+$c-beige: #b5b3a4;
+$c-tan: #444;
+*/
+@font-face {
+  font-family: "Playfair Display";
+  src: url("../asset/font/playfair-display-regular.ttf");
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("../asset/font/playfair-display-bold.ttf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Caxton Std Book";
+  src: url("../asset/font/CaxtonStd-Book.otf");
+}
+@font-face {
+  font-family: "Caxton Std Book";
+  src: url("../asset/font/Caxton Std Bold.otf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Caxton Std Book";
+  src: url("../asset/font/Caxton Std Book Italic.otf");
+  font-style: italic;
+}
+@font-face {
+  font-family: "Intruder";
+  src: url("../asset/font/Intruder.ttf");
+}
+@font-face {
+  font-family: "MinionPro";
+  src: url("../asset/font/MinionPro-Regular.otf");
+}
+@font-face {
+  font-family: "Priori";
+  src: url("../asset/font/PrioriSerifOT-Bold.otf");
+}
+:root {
+  --color-red: #892e29;
+  --color-dark-grey: #4c4d4f;
+  --color-light-grey: #8b8d90;
+  --color-black: #000000;
+  --color-subheader: #181e1f;
+  --color-white: #e6e5e3;
+  --color-header: #8a2e2a;
+  --color-imperium: #8a2e2a;
+  --color-aeldari: #232737;
+  --color-ork: #3f5028;
+  --color-chaos: #361f3c;
+  --color-green: #32a852;
+  --image-background: url(../asset/image/background.webp);
+  --image-border: url(../asset/image/border.webp);
+  --image-border-red: url(../asset/image/border-red.webp);
+  --image-title-border: url(../asset/image/title-border.webp);
+  --image-input: url(../asset/image/input.webp);
+  --font-text: "Caxton Std Book";
+  --font-header: "Priori";
+}
+
+/* Global styles */
+.window-app .window-content {
+  background: var(--image-background) 0 100% repeat; /*, var(--image-background) 50px 100% repeat;*/
+  font-family: var(--font-text);
+}
+
+.window-app.item .window-content,
+.window-app.journal-sheet .window-content,
+.window-app.actor .window-content {
+  border: 30px solid transparent;
+  border-top: 0px;
+  border-image: url(../asset/image/journal-border.webp) 0 80 60 repeat;
+  border-bottom: 20px solid transparent;
+}
+
+.window-app .window-header {
+  border-image: url(../asset/image/header.webp) repeat;
+  border-image-slice: 8 8 7 7 fill;
+  border-image-width: 0px 0px 2px 2px;
+  font-family: var(--font-text);
+}
+
+.dialog.window-app .window-content {
+  background: url(../asset/image/background.webp) repeat;
+  border: 8px solid transparent;
+  border-image: var(--image-border) 8 8 8 8 repeat repeat;
+  border-image-outset: 0px;
+}
+
+.test-dialog h1 {
+  align-self: center;
+  margin: 0;
+  border-style: solid;
+  border-width: 0px 8px 8px 8px;
+  border-image: var(--image-title-border) 8 8 8 8 repeat repeat;
+  color: var(--color-red);
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 0 30px;
+}
+.test-dialog .pill {
+  display: flex;
+  flex-direction: row;
+}
+.test-dialog .pill label {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-align: center;
+  padding: 5px;
+  font-family: var(--font-text);
+  font-size: 14px;
+  border: 1px solid var(--color-black);
+}
+.test-dialog .pill input {
+  background: var(--image-input) 0 100% repeat;
+  border: 1px solid var(--color-black);
+  border-radius: 0;
+  border-left: 0;
+  box-shadow: inset 0 0 6px var(--color-dark-grey);
+  color: var(--color-black);
+  font-size: 14px;
+  font-family: var(--font-text);
+  text-align: center;
+}
+.test-dialog .pill input[type=text] {
+  background: var(--image-input) 0 100% repeat;
+  border: 1px solid var(--color-black);
+  border-radius: 0;
+  border-left: 0;
+  box-shadow: inset 0 0 6px var(--color-dark-grey);
+  color: var(--color-black);
+  font-size: 14px;
+  font-family: var(--font-text);
+  text-align: center;
+}
+
+#status-bound:checked ~ #msg-bound {
+  display: block;
+}
+
+#status-bound:not(:checked) ~ #msg-bound {
+  display: none;
+}
+
+#status-neg:checked ~ #msg-neg {
+  display: block;
+}
+
+#status-neg:not(:checked) ~ #msg-neg {
+  display: none;
+}
+
+.chat-message {
+  background: url(../asset/image/journal-sidebar.webp) repeat;
+  border: 8px solid transparent;
+  border-image: var(--image-border) 8 8 8 8 repeat repeat;
+  border-image-outset: 4px;
+  margin-top: 15px;
+  padding: 0 !important;
+  position: relative;
+}
+.chat-message .message-header {
+  flex-grow: 1;
+}
+.chat-message .message-content {
+  flex-grow: 2;
+}
+.chat-message h1 {
+  align-self: center;
+  margin: 0;
+  border-style: solid;
+  border-width: 0px 8px 8px 8px;
+  border-image: var(--image-title-border) 8 8 8 8 repeat repeat;
+  color: var(--color-red);
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+  padding: 0 30px;
+}
+.chat-message .success {
+  color: var(--color-green);
+  font-weight: bold;
+}
+.chat-message .failure {
+  color: var(--color-red);
+  font-weight: bold;
+}
+.chat-message .dos {
+  background: url(../asset/image/input.webp) repeat;
+  border: 1px solid var(--color-black);
+  box-shadow: inset 0 0 6px var(--color-dark-grey);
+  position: relative;
+  margin: 5px -4px -4px -4px;
+}
+.chat-message .dos P {
+  text-align: center;
+}
+.chat-message span.roll {
+  border: 1px solid black;
+  border-radius: 5px;
+  border: 1px solid var(--color-black);
+  box-shadow: inset 0 0 2px var(--color-dark-grey);
+  padding: 5px;
+  font-size: 1.3em;
+  position: relative;
+}
+.chat-message .roll-comp {
+  margin: 5px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.chat-message .roll-comp .centered {
+  padding: 10px;
+}
+
+.icon-tray {
+  position: absolute;
+  left: -87px;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 85px;
+}
+
+.reroll-icon {
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid var(--color-imperium);
+  color: var(--color-imperium);
+  z-index: 1;
+  font-size: 14px;
+  font-weight: bold;
+  padding-top: 2px;
+  margin: 0 2px;
+}
+
+.reroll-icon.onedos {
+  padding-top: 1px;
+  padding-right: 1px;
+  font-size: 16px;
+}
+
+.reroll-icon.gmr {
+  padding-right: 1.5px;
+  padding-top: 1px;
+  font-size: 16px;
+}
+
+.item .pill {
+  flex-basis: calc(50% - 1px);
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+.item .pill select, .item .pill input {
+  flex-grow: 1;
+  height: 31px;
+}
+.item .pill input {
+  background: var(--image-input) 0 100% repeat;
+  border: 1px solid var(--color-black);
+  border-radius: 0;
+  border-left: 0;
+  box-shadow: inset 0 0 6px var(--color-dark-grey);
+  color: var(--color-black);
+  font-size: 14px;
+  font-family: var(--font-text);
+  text-align: center;
+}
+
+/* Styles limited to roguetrader sheets */
+.roguetrader {
+  /* Stylings for all forms */
+}
+.roguetrader form {
+  width: 100%;
+  height: 100%;
+}
+.roguetrader form > div {
+  width: 100%;
+  height: 100%;
+}
+.roguetrader form > div .sheet-header {
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-template-rows: 100px;
+  column-gap: 0;
+  row-gap: 0;
+  width: 100%;
+}
+.roguetrader form > div .sheet-header .bio {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+.roguetrader form > div .sheet-header .bio .pill {
+  flex-basis: calc(50% - 1px);
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+.roguetrader form > div .sheet-header .bio label {
+  min-width: 100px;
+  max-width: 100px;
+  height: 31px;
+}
+.roguetrader form > div .sheet-header .bio input {
+  flex-grow: 1;
+  height: 31px;
+}
+.roguetrader .vitals {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1 !important;
+  width: 100%;
+}
+.roguetrader .vitals .pill {
+  margin: 0 2px;
+}
+.roguetrader .vitals .pill .pill-content {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+.roguetrader .vitals .pill label {
+  min-width: 40px;
+  max-width: 40px;
+  height: 31px;
+}
+.roguetrader .vitals .pill input {
+  flex-grow: 1;
+  height: 31px;
+}
+.roguetrader .dispcontrols {
+  border: 1px solid black;
+}
+.roguetrader .dispcontrols a {
+  width: 46px;
+}
+.roguetrader .dispcontrols .item {
+  color: var(--color-white);
+  background-color: var(--color-black);
+  cursor: pointer;
+  padding: 5px 0;
+  flex: 1;
+}
+.roguetrader .dispcontrols .item.active, .roguetrader .dispcontrols .item:hover {
+  background-color: var(--color-red);
+  text-shadow: none;
+}
+.roguetrader .avatar {
+  grid-column: 1/1;
+  grid-row: 1/1;
+  border: 8px solid transparent;
+  border-image: var(--image-border) 8 8 8 8 repeat repeat;
+  height: 100px;
+}
+.roguetrader .avatar img {
+  border: 0 none;
+  height: 100% !important;
+  object-fit: contain;
+  box-sizing: border-box;
+  border-radius: 2px;
+  max-width: 100%;
+}
+.roguetrader .sheet-tabs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-basis: 100%;
+  font-size: 18px;
+  font-family: var(--font-text);
+  font-weight: bold;
+  margin: 8px 0;
+  border: 8px solid transparent !important;
+  border-image: var(--image-border) 8 8 8 8 repeat repeat !important;
+  justify-content: space-around;
+  margin: 0 !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  padding: 0 !important;
+}
+.roguetrader .sheet-tabs .item {
+  color: var(--color-white);
+  background-color: var(--color-black);
+  cursor: pointer;
+  padding: 5px 0;
+  flex: 1;
+}
+.roguetrader .sheet-tabs .item.active, .roguetrader .sheet-tabs .item:hover {
+  background-color: var(--color-red);
+  text-shadow: none;
+}
+.roguetrader .stats-body > span.active {
+  display: default;
+}
+.roguetrader .stats-body > span:not(.active) {
+  display: none;
+}
+.roguetrader .talents-body > span.active {
+  display: default;
+}
+.roguetrader .talents-body > span:not(.active) {
+  display: none;
+}
+.roguetrader .characteristics .pill label, .roguetrader .skills .pill label {
+  flex: 2;
+  display: flex;
+  justify-content: space-between;
+}
+.roguetrader .characteristics .pill label span, .roguetrader .skills .pill label span {
+  color: var(--color-light-grey);
+}
+.roguetrader .characteristics .pill input, .roguetrader .skills .pill input {
+  display: flex;
+  flex: 1;
+  height: 31px;
+}
+.roguetrader section.wrapper, .roguetrader .dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.roguetrader section.wrapper h1, .roguetrader .dialog h1 {
+  align-self: center;
+  margin: 0;
+  border-style: solid;
+  border-width: 0px 8px 8px 8px;
+  border-image: var(--image-title-border) 8 8 8 8 repeat repeat;
+  color: var(--color-red);
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  padding: 0 30px;
+}
+.roguetrader section.wrapper .block, .roguetrader .dialog .block {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+}
+.roguetrader section.wrapper .block > *, .roguetrader .dialog .block > * {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.roguetrader section.wrapper .block .pill, .roguetrader .dialog .block .pill {
+  margin: 3px 0;
+}
+.roguetrader section.wrapper .block .left, .roguetrader section.wrapper .block .right, .roguetrader .dialog .block .left, .roguetrader .dialog .block .right {
+  margin-right: 4px;
+}
+.roguetrader .hover {
+  cursor: pointer;
+}
+.roguetrader .hover:hover, .roguetrader .hover:active {
+  background-color: var(--color-red);
+  text-shadow: none;
+}
+.roguetrader .wrapper-row {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+}
+.roguetrader .pill {
+  display: flex;
+  flex-direction: row;
+}
+.roguetrader .pill label {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-align: center;
+  padding: 5px;
+  font-family: var(--font-text);
+  font-size: 14px;
+  border: 1px solid var(--color-black);
+}
+.roguetrader .pill input {
+  background: var(--image-input) 0 100% repeat;
+  border: 1px solid var(--color-black);
+  border-radius: 0;
+  border-left: 0;
+  box-shadow: inset 0 0 6px var(--color-dark-grey);
+  color: var(--color-black);
+  font-size: 14px;
+  font-family: var(--font-text);
+  text-align: center;
+}
+.roguetrader .pill input[type=text] {
+  background: var(--image-input) 0 100% repeat;
+  border: 1px solid var(--color-black);
+  border-radius: 0;
+  border-left: 0;
+  box-shadow: inset 0 0 6px var(--color-dark-grey);
+  color: var(--color-black);
+  font-size: 14px;
+  font-family: var(--font-text);
+  text-align: center;
+}
+.roguetrader .full .pill label, .roguetrader .full .pill input {
+  flex-grow: 1;
+}
+.roguetrader table th, .roguetrader table td {
+  padding-right: 0.25em;
+}
+
+/*# sourceMappingURL=roguetrader.css.map */

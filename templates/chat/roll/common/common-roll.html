@@ -1,0 +1,36 @@
+<div class="rt chat-roll">
+        <div class="block-right">
+                <h1>{{ testData.title }}</h1>
+                <div class="roll-comp">
+                        
+                        <span class="roll">
+                                <span class="icon-tray">
+                                        {{#if context.dosadded}}
+                                        <span class="reroll-icon onedos">+1</i></span>
+                                        {{/if}}
+                                        {{#if context.gmrerolled}}
+                                        <span class="reroll-icon gmr">G</span>
+                                        {{/if}}
+                                        {{#if context.fprerolled}}
+                                        <span class="reroll-icon fpr"><i class="fas fa-redo"></i></span>
+                                        {{/if}}
+                                        {{#if testData.core.fp}}
+                                        <span class="reroll-icon fpr">+</i></span>
+                                        {{/if}}
+                                </span>
+                                {{ result.roll }}
+                        </span> 
+                        <span class="centered">vs.</span> 
+                        <span class="roll">{{ testData.core.sum }}</span>
+                </div>
+        </div>
+        <div class="dos">
+                {{#if testData.success }}
+                        <p class="success">You got {{ testData.dos}} Degrees of Success!</p>
+                {{else}}
+                        <p class="failure">You got {{ testData.dos}} Degrees of Failure.</p>
+                {{/if}}
+        </div>
+        
+
+</div>

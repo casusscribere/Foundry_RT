@@ -1,0 +1,54 @@
+{{!-- This template is for Talents --}}
+<form class="{{cssClass}} item" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="Talent Name"/></h1>
+    </div>
+  </header>
+
+  {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        <h1 id="title" style="display:none">{{json item}}</h1>
+        <div class="wrapper-row">
+          <div class="pill">
+            <label>Preset</label>
+            <select name="data.preset" class="preset">
+                {{#select data.preset}}
+                {{#each (config "CoreTalents" )as |option key|}}
+                <option value="{{key}}">{{option.name}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+          </div>
+          <div class="pill">
+            <label>Tier</label>
+            <input type="number" title="tier" name="data.tier" value="{{data.tier}}" data-dtype="Number">
+        </div>
+      </div>
+      <div>
+        <div class="pill">
+          <label>Aptitudes</label>
+          <input type="" title="aptitudes1" name="data.aptitudes1" value="{{data.aptitudes1}}" data-dtype="Text">
+          <input type="" title="aptitudes2" name="data.aptitudes2" value="{{data.aptitudes2}}" data-dtype="Text">
+        </div>
+        <div class="pill">
+          <label>Prerequisites</label>
+          <input type="" title="prereqs" name="data.prereqs" value="{{data.prereqs}}" data-dtype="Text">
+        </div>
+      </div>
+      <div>
+        <div class="pill">
+          <label>Short Desc</label>
+          <input type="" title="shortdesc" name="data.shortdesc" value="{{data.shortdesc}}" data-dtype="Text">
+        </div>
+      </div>
+      <div>
+        <div class="wrapper-row">
+          <div class="description">
+              {{editor content=data.desc target="data.desc" button=true owner=owner editable=editable}}
+          </div>
+        </div>
+      </div>
+  </section>
+</form>

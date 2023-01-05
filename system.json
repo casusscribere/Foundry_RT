@@ -1,0 +1,28 @@
+{
+  "name": "roguetrader",
+  "title": "Rogue Trader 2.0",
+  "description": "The Rogue Trader 2.0 system for FoundryVTT!",
+  "version": "1.4.3",
+  "minimumCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "9",
+  "author": "Kirk Lundblade",
+  "esmodules": ["module/roguetrader.mjs"],
+  "styles": ["css/roguetrader.css"],
+  "scripts": [],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "gridDistance": 1,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "wounds",
+  "secondaryTokenAttribute": "fatepoints",
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "license": "LICENSE.txt"
+}

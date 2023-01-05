@@ -1,0 +1,119 @@
+{{!-- This template is for Talents --}}
+<form class="{{cssClass}} item" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="Weapon Name"/></h1>
+    </div>
+  </header>
+
+  {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        <h1 id="title" style="display:none;">{{json item}}</h1>
+        <div class="wrapper-row">
+            <div class="pill">
+                <label>Class</label>
+                <select name="data.class" class="class">
+                    {{#select data.class}}
+                    {{#each (config "WeaponClasses" )as |option key|}}
+                    <option value="{{key}}">{{option}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div class="pill">
+                <label>Origin</label>
+                <select name="data.origin" class="origin">
+                    {{#select data.origin}}
+                    {{#each (config "ItemOrigins" )as |option key|}}
+                    <option value="{{key}}">{{option}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div class="pill">
+                <label>Spec</label>
+                <select name="data.spec" class="spec">
+                    {{#select data.spec}}
+                    {{#each (config "WeaponSpecs" )as |option key|}}
+                    <option value="{{key}}">{{option}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+        </div>
+        <div class="wrapper-row">
+            <div class="pill">
+                <label>Rng</label>
+                <input type="number" title="range" name="data.range" value="{{data.range}}" data-dtype="Number">
+            </div>
+            <div class="pill">
+                <label>RoF</label>
+                <input type="string" title="rofsingle" name="data.rof.single"  value="{{data.rof.single}}" data-dtype="Text">
+                <input type="number" title="rofsemi"   name="data.rof.semi"    value="{{data.rof.semi}}"   data-dtype="Number">
+                <input type="number" title="roffull"   name="data.rof.full"    value="{{data.rof.full}}"   data-dtype="Number">
+            </div>
+            <div class="pill">
+                <label>Dmg(Xd10+Y)</label>
+                <input type="number" title="dmgdice"    name="data.damage.dice"     value="{{data.damage.dice}}"    data-dtype="Number">
+                <input type="number" title="dmgstatic"  name="data.damage.static"   value="{{data.damage.static}}"  data-dtype="Number">
+                <input type="string" title="dmgtype"    name="data.damage.type"     value="{{data.damage.type}}"    data-dtype="Text">
+            </div>
+            <div class="pill">
+                <label>Pen</label>
+                <input type="number" title="penetration" name="data.penetration" value="{{data.penetration}}" data-dtype="Number">
+            </div>
+        </div>
+        <div class="wrapper-row">
+            <div class="pill">
+                <label>Clip</label>
+                <input type="number" title="clipcur" name="data.clip.cur" value="{{data.clip.cur}}" data-dtype="Number">
+                <input type="number" title="clipmax" name="data.clip.max" value="{{data.clip.max}}" data-dtype="Number">
+                <input type="number" title="clipext" name="data.clip.ext" value="{{data.clip.ext}}" data-dtype="Number">
+            </div>
+            <div class="pill">
+                <label>Rld</label>
+                <select name="data.reload" class="reload">
+                    {{#select data.reload}}
+                    {{#each (config "WeaponReloads" )as |option key|}}
+                    <option value="{{key}}">{{option}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div class="pill">
+                <label>Craftsmanship</label>
+                <select name="data.craftsmanship" class="craftsmanship">
+                    {{#select data.craftsmanship}}
+                    {{#each (config "ItemCraftsmanship" )as |option key|}}
+                    <option value="{{key}}">{{option}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div class="pill">
+                <label>Weight</label>
+                <input type="number" title="weight" name="data.weight" value="{{data.weight}}" data-dtype="Number">
+            </div>
+        </div>
+        <div class="wrapper-row">
+            <!--<div class="pill">
+                <label>Special</label>
+                <select name="data.special" class="special">
+                    {{#select data.special}}
+                    {{#each (config "WeaponSpecialQualities" )as |option key|}}
+                    <option value="{{key}}">{{option.name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                <input type="number" title="specialval" name="data.specialval" value="{{data.specialval}}" data-dtype="Number">
+            </div>-->
+            <div class="item-form-group stacked">
+                <label>Special Qualities<a class="item-specials"><i class="fas fa-cog"></i></a></label>            
+                <div class="item-form-inputs">
+                  <input disabled type="text" value="{{data.specialsstring}}" />
+                </div>
+            </div>
+        </div>
+  </section>
+</form>

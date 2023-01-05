@@ -1,0 +1,99 @@
+<span class="combat-body viewmode">
+  <span data-group="secondary" data-tab="view" class="tab">
+      <section class="wrapper weapons">
+          <h1>Weapons</h1>
+          <div class="block">
+            <table class="">
+              <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Range</th>
+                  <th>RoF</th>
+                  <th>Damage</th>
+                  <th>Pen</th>
+                  <th>Clip</th>
+                  <th>Rld</th>
+                  <th>Special</th>
+                  <th></th>
+              </tr>
+              {{#each weapons as |item id|}}
+                <tr class="item" data-item-id="{{item._id}}">
+                  {{#if (isWeaponClass item.data.class "melee")}}
+                  <td><a class="item-control weapon-use" title="Use Weapon"><i class="fa-solid fa-swords"></i></a></td>
+                  <td><label class="">{{item.name}}</label></td>
+                  <td><span class="">{{item.data.range}}m</span></td>
+                  <td><span class="">{{item.data.rof.single}}</span></td>
+                  <td><span class="">{{item.data.damage.dice}}</span>d10+{{item.data.damage.static}}</td>
+                  <td><span class="">{{item.data.penetration}}</span></td>
+                  <td><span class=""></span></td>
+                  <td><span class=""></span></td>
+                  <td><span class="">{{item.data.specialsstring}}</span></td>
+                  {{else}}
+                    {{#if (isWeaponClass item.data.class "thrown")}}
+                      <td><a class="item-control weapon-use" title="Use Weapon"><i class="fa-solid fa-bomb"></i></a></td>
+                    {{else if (isWeaponClass item.data.class "pistol")}}
+                      <td><a class="item-control weapon-use" title="Use Weapon"><i class="fa-solid fa-gun"></i></a></td>
+                    {{else if (isWeaponClass item.data.class "vehicle")}}
+                      <td><a class="item-control weapon-use" title="Use Weapon"><i class="fa-solid fa-jet-fighter-up"></i></a></td>
+                    {{else}}
+                      <td><a class="item-control weapon-use" title="Use Weapon"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a></td>
+                    {{/if}}
+                  <td><label class="">{{item.name}}</label></td>
+                  <td><span class="">{{item.data.range}}m</span></td>
+                  <td><span class="">{{item.data.rof.single}}/{{item.data.rof.semi}}/{{item.data.rof.full}}</span></td>
+                  <td><span class="">{{item.data.damage.dice}}</span>d10+{{item.data.damage.static}}</td>
+                  <td><span class="">{{item.data.penetration}}</span></td>
+                  <td><span class="">{{item.data.clip.cur}}/{{item.data.clip.max}}/{{item.data.clip.ext}}</span></td>
+                  <td><span class="">{{item.data.reload}}</span></td>
+                  <td><span class="">{{item.data.specialsstring}}</span></td>
+                  {{/if}}
+                </tr>
+              {{/each}}
+          </table>
+        </div>
+      </section>
+  </span>
+  <span data-group="secondary" data-tab="edit" class="tab">
+      <section class="wrapper weapons">
+          <h1>Weapons</h1>
+          <div class="block">
+              <table class="">
+                  <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>Origin</th>
+                      <th>Spec</th>
+                      <th>Crafts</th>
+                      <th>Weight</th>
+                      <th><a class="item-control item-create" title="Create item" data-type="weapon"><i class="fas fa-plus"></i> Add Weapon</a></th>
+                  </tr>
+                  {{#each weapons as |item id|}}
+                  <tr class="item" data-item-id="{{item._id}}">
+                    {{#if (isWeaponClass item.data.class "melee")}}
+                      <td><i class="fa-solid fa-swords"></i></td>
+                    {{else if (isWeaponClass item.data.class "thrown")}}
+                      <td><i class="fa-solid fa-bomb"></i></td>
+                    {{else if (isWeaponClass item.data.class "pistol")}}
+                      <td><i class="fa-solid fa-gun"></i></td>
+                    {{else if (isWeaponClass item.data.class "vehicle")}}
+                      <td><i class="fa-solid fa-jet-fighter-up"></i></td>
+                    {{else}}
+                      <td><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></td>
+                    {{/if}}
+                      <td><label class="">{{item.name}}</label></td>
+                      <!--<td><span class="">{{item.data.class}}</span></td>-->
+                      <td><span class="">{{item.data.origin}}</span></td>
+                      <td><span class="">{{item.data.spec}}</span></td>
+                      <td><span class="">{{item.data.craftsmanship}}</span></td>
+                      <td><span class="">{{item.data.weight}}kg</span></td>
+                      <td class="item-controls">
+                          <a class="item-control item-edit" title="Edit Weapon"><i class="fas fa-edit"></i></a>
+                          <a class="item-control item-delete" title="Delete Weapon"><i class="fas fa-trash"></i></a>
+                      </td>
+                  </tr>
+                  {{/each}}
+              </table>
+          </div>
+      </section>
+  </span>
+</span>

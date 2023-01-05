@@ -1,0 +1,51 @@
+{{!-- This template is for Lore skills --}}
+<form class="{{cssClass}} item" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="Specialization"/></h1>
+    </div>
+  </header>
+
+  {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        <h1 id="title" style="display:none">{{json item}}</h1>
+        <div class="wrapper-row">
+            <div class="pill">
+                <label>Type</label>
+                <select name="data.category">
+                    {{#select data.category}}
+                    {{#each (config "specialistSkillOptions" )as |option key|}}
+                    <option value="{{key}}">{{option.name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div class="pill">
+                <label>Rank</label>
+                <input type="number" title="rank" name="data.rank" value="{{data.rank}}" data-dtype="Number">
+            </div>
+            <div class="pill">
+                <label>Adjustment</label>
+                <input type="number" title="adjustment" name="data.adjustment" value="{{data.adjustment}}" data-dtype="Number">
+            </div>
+        </div>
+        <div class="wrapper-row">
+            <div class="pill">
+                <label>Preset</label>
+                <select name="data.preset" class="preset">
+                    {{#select data.preset}}
+                    {{#each (config (objLookup "specialistSkillOptions" data.category "options") )as |option key|}}
+                    <option value="{{key}}">{{option.name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+        </div>
+        <div class="wrapper-row">
+            <div class="description">
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>
+        </div>
+    </section>
+</form>

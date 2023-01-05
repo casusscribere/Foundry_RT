@@ -1,0 +1,77 @@
+<span class="talents-body viewmode">
+    <span data-group="secondary" data-tab="view">
+        <section class="wrapper talents">
+            <h1>Talents</h1>
+            <div class="block">
+                <div class="full">
+                    {{#each talents as |talent key|}}
+                    <div class="pill">
+                        <label class="">{{talent.name}}</label>
+                        <input disabled type="string" title="shortdesc" name="talent.data.shortdesc" value="{{talent.data.shortdesc}}" data-dtype="Text">
+                    </div>
+                    {{/each}}  
+                </div> 
+            </div>
+        </section>
+        <!--<section class="wrapper trainings">
+            <h1>Trainings</h1>
+            <div class="block">
+            </div>
+        </section>
+        <section class="wrapper advances">
+            <h1>Elite Advances</h1>
+            <div class="block">
+            </div>
+        </section>
+        <section class="wrapper traits">
+            <h1>Traits</h1>
+            <div class="block">
+            </div>
+        </section>
+        <section class="wrapper mutations">
+            <h1>Mutations</h1>
+            <div class="block">
+            </div>
+        </section>
+        <section class="wrapper disorders">
+            <h1>Disorders</h1>
+            <div class="block">
+            </div>
+        </section>
+        <section class="wrapper powers">
+            <h1>Psy/Nav Powers</h1>
+            <div class="block">
+            </div>
+        </section>-->
+    </span>
+    <span data-group="secondary" data-tab="edit">
+        <section class="wrapper talents">
+            <h1>Talents</h1>
+            <div class="block">
+                <table class="">
+                    <tr>
+                        <th>Name</th>
+                        <th>Tier</th>
+                        <th>Aptitudes</th>
+                        <th></th>
+                        <th>Prereqs</th>
+                        <th><a class="item-control item-create" title="Create item" data-type="talent"><i class="fas fa-plus"></i> Add Talent</a></th>
+                    </tr>
+                {{#each talents as |item id|}}
+                <tr class="item" data-item-id="{{item._id}}">
+                        <td><label class="">{{item.name}}</label></td>
+                        <td><span class="">{{item.data.tier}}</span></td>
+                        <td><span class="">{{item.data.aptitudes1}}</span></td>
+                        <td><span class="">{{item.data.aptitudes2}}</span></td>
+                        <td><span class="">{{item.data.prereqs}}</span></td>
+                        <td class="item-controls">
+                            <a class="item-control item-edit" title="Edit Lore"><i class="fas fa-edit"></i></a>
+                            <a class="item-control item-delete" title="Delete Lore"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {{/each}}
+                </table>
+            </div>
+        </section>
+    </span>
+</span>

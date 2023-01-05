@@ -1,0 +1,79 @@
+<section class="attack-dialog">
+    <h1 id="title">{{title}}</h1>
+    <div class="block">
+        <table>
+            <tr>
+                <th>Weapon</th>
+                <th>Range</th>
+                <th>RoF</th>
+                <th>Damage</th>
+                <th>Clip</th>
+                <th>Special</th>
+                <th>Mods</th>
+            </tr>
+            <tr>
+                <td><input disabled id="class"           value="{{class}}"         disabled type="string" data-dtype="String" /></td>
+                <td><input disabled id="range"           value="{{disprange}}"     disabled type="string" data-dtype="String" /></td>
+                <td><input disabled id="disprof"         value="{{disprof}}"       disabled type="string" data-dtype="String" /></td>
+                <td><input disabled id="dispdamage"      value="{{dispdamage}}"    disabled type="string" data-dtype="String" /></td>
+                <td><input disabled id="dispclip"        value="{{dispclip}}"      disabled type="string" data-dtype="String" /></td>
+                <td><input disabled id="dispspecials"    value="{{specialsstring}}"disabled type="string" data-dtype="String" /></td>
+                <td><input disabled id="dispmods"        value="{{dispmods}}"      disabled type="string" data-dtype="String" /></td>
+            </tr>
+        </table>
+    </div>
+    <div class="block">
+        <table>
+            <tr>
+                <th></th>
+                <th>Stat</th>
+                <th>Unnat</th>
+                <th>Bound Mod</th>
+                <th>Difficulty</th>
+                <th>Etc Mods</th>
+                <th>Misc Mods</th>
+            </tr>
+            <tr>
+                <td><label id="abbr">{{ abbrev }}</label></td>
+                <td><input disabled id="value" type="number" value="{{value}}" data-dtype="Number" /></td>
+                <td><input disabled id="unnatural" type="number" value="{{unnatural}}" data-dtype="Number" /></td>
+                <td>
+                    <input disabled id="boundmod" type="number" value="{{boundmod}}" data-dtype="Number" />
+                    <input disabled id="modifier" type="number" value="{{modifier}}" data-dtype="Number" style="visibility:hidden; position:absolute;"/>
+                </td>
+                <td><select id="diff" class="modsum">
+                    {{#select difficulty}}
+                    {{#each (config "testDiff" )as |diff d|}}
+                    {{#if diff }}
+                    <option value="{{diff}}">{{d}}</option>
+                    {{else}}
+                    <option value="{{diff}}" selected>{{d}}</option>
+                    {{/if}}
+                    {{/each}}
+                    {{/select}}
+                </select></td>
+                <td><input id="etc"             class="modsum" type="number" value="{{etc}}"                data-dtype="Number" /></td>
+                <td><input id="sheet-modifiers" class="modsum" type="number" value="{{sheetmodifiers}}"    data-dtype="Number" disabled /></td>
+            </tr>
+        </table>
+    </div>
+    <div class="block">
+        <h1 id="action">Actions</h1>
+        <div class="pill">
+            <label>Add FP for +10?</label>
+            <input id="status-fp" type="checkbox"/>
+        </div>
+        <h1 id="warn">Warnings</h1>
+        <div class="pill">
+            <input id="status-bound"    type="checkbox" style="visibility:hidden; position:absolute;"/>
+            <p id="msg-bound">Your test is capped at +60 or -60 modifier</p>
+            <input id="status-neg"      type="checkbox" style="visibility:hidden; position:absolute;"/>
+            <p id="msg-neg">You'll be rolling against a negative threshold!</p>
+            <!--<p id="msg-fp">You're adding a fate point for +10</p>-->
+        </div>
+        <div>
+            <input id="author" type="text" value={{this.id}} style="visibility:hidden; position:absolute;"/>
+            <input id="fpspent" type="checkbox" style="visibility:hidden; position:absolute;"/>
+        </div>
+    </div>
+</section>

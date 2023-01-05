@@ -1,0 +1,176 @@
+<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
+      use both the "grid" and "grid-Ncol" class where "N" can be any number
+      from 1 to 12 and will create that number of columns.  --}}
+      <div class="resources grid grid-3col">
+
+        {{!-- "flex-group-center" is also defined in the _grid.scss file
+        and it will add a small amount of padding, a border, and will
+        center all of its child elements content and text. --}}
+        <div class="resource flex-group-center">
+          <label for="data.wounds.value" class="resource-label">Wounds</label>
+          <div class="resource-content flexrow flex-center flex-between">
+          <input type="text" name="data.vitals.wounds.value" value="{{data.vitals.wounds.value}}" data-dtype="Number"/>
+          <span> / </span>
+          <input type="text" name="data.vitals.wounds.max" value="{{data.vitals.wounds.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+
+        <div class="resource flex-group-center">
+          <label for="data.fatepoints.value" class="resource-label">Fate</label>
+          <div class="resource-content flexrow flex-center flex-between">
+          <input type="text" name="data.vitals.fatepoints.value" value="{{data.vitals.fatepoints.value}}" data-dtype="Number"/>
+          <span> / </span>
+          <input type="text" name="data.vitals.fatepoints.max" value="{{data.vitals.fatepoints.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+
+        <div class="resource flex-group-center">
+          <label for="data.fatepoints.value" class="resource-label">Fatigue</label>
+          <div class="resource-content flexrow flex-center flex-between">
+          <input type="text" name="data.vitals.fatigue.value" value="{{data.vitals.fatigue.value}}" data-dtype="Number"/>
+          <span> / </span>
+          <input type="text" name="data.vitals.fatigue.max" value="{{data.vitals.fatigue.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+
+        <div class="resource flex-group-center">
+          <label for="data.psyrating.value" class="resource-label">Psy</label>
+          <div class="resource-content flexrow flex-center flex-between">
+          <input type="text" name="data.vitals.psyrating.value" value="{{data.vitals.psyrating.value}}" data-dtype="Number"/>
+          <span> / </span>
+          <input type="text" name="data.vitals.psyrating.max" value="{{data.vitals.psyrating.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+
+        <div class="resource flex-group-center">
+          <label for="data.size.value" class="resource-label">Size</label>
+          <div class="resource-content flexrow flex-center flex-between">
+          <input type="text" name="data.vitals.size.value" value="{{data.vitals.size.value}}" data-dtype="Number"/>
+          </div>
+        </div>
+
+        <div class="resource flex-group-center">
+          <label for="data.carryingcapacity.value" class="resource-label">Capacity</label>
+          <div class="resource-content flexrow flex-center flex-between">
+          <input type="text" name="data.vitals.carryingcapacity.value" value="{{data.vitals.carryingcapacity.value}}" data-dtype="Number"/>
+          <span> / </span>
+          <input type="text" name="data.vitals.carryingcapacity.max" value="{{data.vitals.carryingcapacity.max}}" data-dtype="Number"/>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="characteristics grid grid-5col">
+        {{#each data.characteristics as |characteristic key|}}
+          <div class="characteristic flexrow flex-group-center">
+            <label for="data.characteristics.{{key}}.value" class="resource-label">{{characteristic.abbrev}}</label>
+            <!--<input type="text" name="data.characteristics.{{key}}.value" value="{{characteristic.value}}" data-dtype="Number"/>-->
+            <span class="ability-mod">{{numberFormat characteristic.value decimals=0 sign=false}}</span>
+          </div>
+        {{/each}}
+      </div>
+
+
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    {{!-- Default tab is specified in actor-sheet.mjs --}}
+    <a class="item" data-tab="battle">Battle</a>
+    <a class="item" data-tab="core">Core</a>
+    <a class="item" data-tab="items">Skills</a>
+    <a class="item" data-tab="items">Proficiencies</a>
+    <a class="item" data-tab="items">Items</a>
+    <a class="item" data-tab="effects">Effects</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    {{!-- Core Attributes Tab --}}
+    <div class="tab core" data-group="primary" data-tab="core">
+      <section class="characteristics">
+        <p>Characteristics</p>
+        <div class="characteristics grid grid-2col">
+          <div class="characteristic flexrow flex-group-center">
+            <span>Attr</span>
+            <span></span>
+            <span></span>
+            <span>Cond</span>
+            <span>Adj</span>
+            <span>Base</span>
+            <span>Unnat</span>
+          </div>
+          {{#each data.characteristics as |characteristic key|}}
+            <div class="characteristic flexrow flex-group-center">
+              <label for="data.characteristics.{{key}}.value" class="resource-label">{{characteristic.abbrev}}</label>
+              <span class="characteristic-value">{{numberFormat characteristic.value decimals=0 sign=false}}({{numberFormat characteristic.bonus decimals=0 sign=false}})</span>
+              <span class="">=</span>
+              <span class="characteristic-conditional">{{ numberFormat characteristic.conditional decimals=0 sign=true}}</span>
+              <input type="text" name="data.characteristics.{{key}}.adjustment" value="{{characteristic.adjustment}}" data-dtype="Number"/>
+              <input type="text" name="data.characteristics.{{key}}.base"       value="{{characteristic.base}}" data-dtype="Number"/>
+              <input type="text" name="data.characteristics.{{key}}.unnatural"  value="{{characteristic.unnatural}}" data-dtype="Number"/>
+            </div>
+          {{/each}}
+        </div>
+      </section>
+      <section class="mitigation">
+        <p>mitigation</p>
+        <div class="mitigation grid grid-2col">
+          {{#each data.mitigations as |mitigation key|}}
+            <div class="mitigation flexrow flex-group-center">
+              <label for="data.mitigation.{{key}}.armor" class="resource-label">{{mitigation.abbrev}}</label>
+              <input type="text" name="data.mitigations.{{key}}.armor" value="{{mitigation.armor}}" data-dtype="Number"/>
+              <span class="mitigation-mod">{{numberFormat mitigation.sum decimals=0 sign=true}}</span>
+            </div>
+          {{/each}}
+        </div>
+      </section>
+    </div>
+
+    {{!-- Owned Features Tab --}}
+    <div class="tab features" data-group="primary" data-tab="features">
+      <section class="grid grid-3col">
+        <aside class="sidebar">
+
+          {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
+          use both the "grid" and "grid-Ncol" class where "N" can be any number
+          from 1 to 12 and will create that number of columns.  --}}
+        </aside>
+
+        {{!-- For the main features list, span the right two columns --}}
+        <section class="main grid-span-2">
+          {{!-- This is a Handlebars partial. They're stored in the `/parts` folder next to this sheet, and defined in module/helpers/templates.mjs --}}
+          {{> "systems/roguetrader/templates/actor/parts/actor-features.html"}}
+        </section>
+
+      </section>
+    </div>
+
+    {{!-- Biography Tab --}}
+    <div class="tab biography" data-group="primary" data-tab="description">
+      {{!-- If you want TinyMCE editors to output inline rolls when rendered, you need to pass the actor's roll data to the rollData property. --}}
+      {{editor content=data.biography target="data.biography" rollData=rollData button=true owner=owner editable=editable}}
+    </div>
+
+    {{!-- Owned Items Tab --}}
+    <div class="tab items" data-group="primary" data-tab="items">
+       {{> "systems/roguetrader/templates/actor/parts/actor-items.html"}}
+    </div>
+
+    {{!-- Active Effects Tab --}}
+    <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+      {{> "systems/roguetrader/templates/actor/parts/actor-effects.html"}}
+    </div>
+
+  </section>
+</form>
+

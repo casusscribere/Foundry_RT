@@ -1,0 +1,173 @@
+<span class="stats-body viewmode">
+    <span data-group="secondary" data-tab="view">
+        <section class="wrapper characteristics">
+            <h1>Characteristics</h1>
+            <div class="block">
+                <div class="left">
+                    {{#each data.characteristics as |characteristic key|}}
+                    {{#if characteristic.isLeft}}
+                    <div class="pill">
+                        <label class="roll-characteristic hover" data-characteristic="{{key}}">
+                            <span></span>
+                            {{objLookup "Attributes" key "name"}}
+                            <span>({{objLookup "Attributes" key "abbrev"}})</span>
+                        </label>
+                        <input disabled type="number" title="total" name="data.characteristics.{{key}}.value" value="{{characteristic.value}}" data-dtype="Number">
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="right">
+                    {{#each data.characteristics as |characteristic key|}}
+                    {{#if characteristic.isRight}}
+                    <div class="pill">
+                        <input disabled type="number" title="total" name="data.characteristics.{{key}}.value" value="{{characteristic.value}}" data-dtype="Number">
+                        <label class="roll-characteristic hover" data-characteristic="{{key}}">
+                            <span>({{objLookup "Attributes" key "abbrev"}})</span>
+                            {{objLookup "Attributes" key "name"}}
+                            <span></span>
+                        </label>
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </section>
+        <section class="wrapper skills">
+            <h1>Skills</h1>
+            <div class="block">
+                <div class="left">
+                    {{#each data.skills as |skill key|}}
+                    {{#if skill.isLeft}}
+                    <div class="pill">
+                        <label class="roll-skill hover" data-skill="{{key}}">
+                            {{objLookup "Skills" key "name"}}
+                            <span>({{objLookup "Attributes" (objLookup "Skills" key "attribute") "abbrev"}})</span>
+                        </label>
+                        <input disabled type="number" title="total" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number">
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                    {{#each lores as |lore key|}}
+                    {{#if lore.data.isLeft}}
+                    <div class="pill">
+                        <label class="roll-skill hover" data-skill="{{lore.name}}">
+                            {{objLookup "specialistSkillOptions" lore.data.category "abbrev"}}({{lore.name}})
+                            <span>({{objLookup "Attributes" (objLookup "specialistSkillOptions" lore.data.category "attribute") "abbrev"}})</span>
+                        </label>
+                        <input disabled type="number" title="total" name="lores.{{key}}.data.value" value="{{lore.data.value}}" data-dtype="Number">
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+                <div class="right">
+                    {{#each data.skills as |skill key|}}
+                    {{#if skill.isRight}}
+                    <div class="pill">
+                        <label class="roll-skill hover" data-skill="{{key}}">
+                            {{objLookup "Skills" key "name"}}
+                            <span>({{objLookup "Attributes" (objLookup "Skills" key "attribute") "abbrev"}})</span>
+                        </label>
+                        <input disabled type="number" title="total" name="data.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number">
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                    {{#each lores as |lore key|}}
+                    {{#if lore.data.isRight}}
+                    <div class="pill">
+                        <label class="roll-skill hover" data-skill="{{lore.name}}">
+                            {{objLookup "specialistSkillOptions" lore.data.category "abbrev"}}({{lore.name}})
+                            <span>({{objLookup "Attributes" (objLookup "specialistSkillOptions" lore.data.category "attribute") "abbrev"}})</span>
+                        </label>
+                        <input disabled type="number" title="total" name="lores.{{key}}.data.value" value="{{lore.data.value}}" data-dtype="Number">
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </section>
+    </span>
+    <span data-group="secondary" data-tab="edit">
+        <section class="wrapper characteristics">
+            <h1>Characteristics</h1>
+            <div class="block">
+                <table class="">
+                    <tr>
+                        <th>Attr</th>
+                        <th></th>
+                        <th></th>
+                        <th>Base</th>
+                        <th>Adj</th>
+                        <th>Unnat</th>
+                        <th>Misc</th>
+                        <th>Cond</th>
+                    </tr>
+                {{#each data.characteristics as |characteristic key|}}
+                    <tr>
+                        <td><label for="data.characteristics.{{key}}.value" class="">{{objLookup "Attributes" key "abbrev"}}</label></td>
+                        <td><span class="">{{numberFormat characteristic.value decimals=0 sign=false}}({{numberFormat characteristic.bonus decimals=0 sign=false}})+{{numberFormat characteristic.boundmod decimals=0 sign=false}}</span></td>
+                        <td><span class="">=</span></td>
+                        <td><input type="number" name="data.characteristics.{{key}}.base"           value="{{characteristic.base}}"                                             data-dtype="Number"/></td>
+                        <td><input type="number" name="data.characteristics.{{key}}.adjustment"     value="{{characteristic.adjustment}}"     data-dtype="Number"/></td>
+                        <td><input type="number" name="data.characteristics.{{key}}.unnatural"      value="{{characteristic.unnatural}}"                                        data-dtype="Number"/></td>
+                        <td><input type="number" name="data.characteristics.{{key}}.miscmods"       value="{{characteristic.miscmods}}"       data-dtype="Number"/></td>
+                        <td><input type="number" name="data.characteristics.{{key}}.conditions"     value="{{characteristic.conditions}}"                                       data-dtype="Number" disabled /></td> 
+                    </tr>
+                {{/each}}
+                </table>
+            </div>
+        </section>
+        <section class="wrapper skills">
+            <h1>Skills</h1>
+            <div class="block">
+                <table>
+                    <tr class="skill">
+                        <th>Skill</th>
+                        <th>Characteristic</th>
+                        <th>Total</th>
+                        <th>Ranks</th>
+                        <th>Misc</th>
+                    </tr>
+                    {{#each data.skills as |skill key|}}
+                      <tr class="skill">
+                        <td><label for="" class="">{{objLookup "Skills" key "name"}}</label></td>
+                        <td><span class="">{{objLookup "Attributes" (objLookup "Skills" key "attribute") "abbrev"}}</span></td>
+                        <td><input disabled type="number" name="data.skills.{{key}}.value"      value="{{skill.value}}"     data-dtype="Number"/></td>
+                        <td><input          type="number" name="data.skills.{{key}}.rank"       value="{{skill.rank}}"      data-dtype="Number"/></td>
+                        <td><input          type="number" name="data.skills.{{key}}.miscmods"   value="{{skill.miscmods}}"  data-dtype="Number"/></td>
+                      </tr>
+                    {{/each}}
+                </table>
+            </div>
+        </section>
+        <section class="wrapper skills">
+            <h1>Specialist Skills</h1>
+            <div class="block">
+                <table class="items-list">
+                    <tr class="item items-header">
+                        <th>Type</th>
+                        <th>Characteristic</th>
+                        <th>Total</th>
+                        <th>Ranks</th>
+                        <th>Misc</th>
+                        <th><a class="item-control item-create" title="Create item" data-type="lore"><i class="fas fa-plus"></i> Add Lore</a></th>
+                    </tr>
+                    {{#each lores as |item id|}}
+                        <tr class="item" data-item-id="{{item._id}}">
+                            <td>{{objLookup "specialistSkillOptions" item.data.category "abbrev"}}({{item.name}})</td>
+                            <!--<td>{{json item}}</td>-->
+                            <td>{{objLookup "Attributes" (objLookup "specialistSkillOptions" item.data.category "attribute") "abbrev"}}</td>
+                            <td><input disabled type="number"   name="item.data.value"      value="{{item.data.value}}"     data-dtype="Number"/></td>
+                            <td><input type="number"            name="item.data.rank"       value="{{item.data.rank}}"      data-dtype="Number"/></td>
+                            <td><input type="number"            name="item.data.miscmods"   value="{{item.data.miscmods}}"  data-dtype="Number"/></td>
+                            <td class="item-controls">
+                                <a class="item-control item-edit" title="Edit Lore"><i class="fas fa-edit"></i></a>
+                                <a class="item-control item-delete" title="Delete Lore"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </table>
+            </div>
+        </section>
+    </span>
+</span>

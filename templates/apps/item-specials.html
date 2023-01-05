@@ -1,0 +1,19 @@
+<form>
+    <!-- TODO: re-architect for DH 2.0 events -->
+    <h1>ITEM SPECIAL QUALITIES</h1>
+    <div>
+      {{#each specials as |special s|}}
+  
+        <div class="form-group wrapper">
+          <label>{{special.display}}</label>
+          {{#if special.hasRating}}
+          <input type="text" name="{{special.key}}-value" value="{{special.existingSpecial.value}}">
+          {{/if}}
+          <input type="checkbox" name="{{special.key}}" {{checked special.existingSpecial}}>
+        </div>
+
+      {{/each}}
+      
+    </div>
+    <button type="submit">Update</button>
+  </form>
