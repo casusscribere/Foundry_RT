@@ -184,12 +184,14 @@ export class RTActor extends Actor {
 
     if(dialogData.sheetmodifiers > 60 || dialogData.sheetmodifiers < -60) dialogData.bound = true;
     else dialogData.bound = false; 
+    console.log("unnatural value dialog: ",dialogData.unnatural);
     let testData = await RollDialog.create(dialogData);
     testData.targets = dialogData.targets;
     testData.title = dialogData.title;
     testData.speaker = this.speakerData();
     if (rt.Skills[skill]) testData.attribute = rt.Skills[skill].attribute;
     else testData.attribute = "intelligence";
+    console.log("unnatural value: ",testData.unnatural);
     return new RTTest(testData);
   }
 

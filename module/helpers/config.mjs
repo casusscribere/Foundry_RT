@@ -272,13 +272,13 @@ ROGUETRADER.WeaponClasses = {
 }
 
 ROGUETRADER.WeaponClassesNew = {
-  'melee'   : {name:'Melee',    icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'thrown'  : {name:'Thrown',   icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'pistol'  : {name:'Pistol',   icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'basic'   : {name:'Basic',    icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'heavy'   : {name:'Heavy',    icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'vehicle' : {name:'Vehicle',  icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'sniper'  : {name:'Sniper',   icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
+  'melee'   : {name:'Melee',},
+  'thrown'  : {name:'Thrown',   },
+  'pistol'  : {name:'Pistol',   },
+  'basic'   : {name:'Basic',    },
+  'heavy'   : {name:'Heavy',    },
+  'vehicle' : {name:'Vehicle',  },
+  'sniper'  : {name:'Sniper',   },
 }
 
 //TODO: alter to {name: } format instead
