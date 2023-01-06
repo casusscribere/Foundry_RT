@@ -133,8 +133,8 @@
                         <td><label for="" class="">{{objLookup "Skills" key "name"}}</label></td>
                         <td><span class="">{{objLookup "Attributes" (objLookup "Skills" key "attribute") "abbrev"}}</span></td>
                         <td><input disabled type="number" name="data.skills.{{key}}.value"      value="{{skill.value}}"     data-dtype="Number"/></td>
-                        <td><input disabled type="number" name="data.skills.{{key}}.rank"       value="{{skill.rank}}"      data-dtype="Number"/></td>
-                        <td><input disabled type="number" name="data.skills.{{key}}.miscmods"   value="{{skill.miscmods}}"  data-dtype="Number"/></td>
+                        <td><input          type="number" name="data.skills.{{key}}.rank"       value="{{skill.rank}}"      data-dtype="Number"/></td>
+                        <td><input          type="number" name="data.skills.{{key}}.miscmods"   value="{{skill.miscmods}}"  data-dtype="Number"/></td>
                       </tr>
                     {{/each}}
                 </table>

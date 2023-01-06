@@ -60,8 +60,8 @@ export class RTActor extends Actor {
 
     //calculate characteristic values and mods
     for (let [key, characteristic] of Object.entries(data.characteristics)) {
-      characteristic.value = Math.min(Math.max(characteristic.base + characteristic.adjustment, 0), 100);
       characteristic.boundmod = Math.min(Math.max(characteristic.miscmods + characteristic.conditions, -60), 60);
+      characteristic.value = Math.min(Math.max(characteristic.base + characteristic.adjustment, 0), 100);//+characteristic.boundmod;
       characteristic.bonus = Math.floor((characteristic.value) / 10)+Math.max(characteristic.unnatural,0);
     }
 
@@ -73,8 +73,8 @@ export class RTActor extends Actor {
 
     //calculate skill values
     for (let [key, skill] of Object.entries(data.skills)) {
-      skill.value = data.characteristics[rt.Skills[key].attribute].value + rt.rankVal[skill.rank];
       skill.bonus = data.characteristics[rt.Skills[key].attribute].bonus;
+      skill.value = data.characteristics[rt.Skills[key].attribute].value + rt.rankVal[skill.rank];//+skill.miscmods;
     }
 
     //calculate initiative
