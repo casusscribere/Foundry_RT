@@ -11,6 +11,7 @@ export class RTTest {
           targets: data.targets ? data.targets.map(i => i.document.toObject()) || [] : [],
           //type: data.type,
           speaker: data.speaker,
+          ownername: data.ownername,
           rollClass:  this.constructor.name,
           fprerolled: data.fprerolled || false,
           dosadded:   data.dosadded || false,
@@ -24,11 +25,11 @@ export class RTTest {
     }
   
     get template() {
-      return "systems/roguetrader/templates/chat/roll/common/common-roll.html"
+      return "systems/roguetrader/templates/chat/roll/test/characteristic-test.html"
     }
   
     get damageTemplate() {
-      return "systems/roguetrader/templates/chat/roll/damage/damage-roll.html"
+      //return "systems/roguetrader/templates/chat/roll/damage/damage-roll.html"
     }
   
     static recreate(data) {
@@ -62,8 +63,6 @@ export class RTTest {
     }
 
     _detDoS(roll,threshold,unnatural){
-      console.log("test data: ",this.data.testData);
-      console.log("your unnatural is: ",unnatural);
         let degs = 0;
         if(roll <= threshold){
             degs = (Math.floor(threshold/10) - Math.floor(roll/10)) + 1;
@@ -146,7 +145,6 @@ export class RTTest {
     get result() { return this.data.result; }
     get attribute() { return this.actor.attributes[this.data.testData.attribute] }
     get skill() { return this.actor.skills[this.data.testData.skill] }
-  
     //get item() { return this.actor.items.get(this.testData.itemId) }
     get actor() { return game.roguetrader.utility.getSpeaker(this.context.speaker) }
     get message() { return game.messages.get(this.context.messageId) }

@@ -12,5 +12,10 @@
     "systems/roguetrader/templates/actor/parts/actor-talents.html",
     "systems/roguetrader/templates/actor/parts/actor-equipment.html",
     "systems/roguetrader/templates/actor/parts/actor-effects.html",
+    //Roll partials
+    "systems/roguetrader/templates/chat/roll/components/dicebox.html",
+    "systems/roguetrader/templates/chat/roll/components/header.html",
+    "systems/roguetrader/templates/chat/roll/components/dos.html",
+    "systems/roguetrader/templates/chat/roll/components/results.html",
   ]);
 };

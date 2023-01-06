@@ -227,6 +227,15 @@ section.wrapper, .dialog {
             margin-right: 4px;
         }
     }
+
+    .block.table {
+        label {
+            flex-basis: 30%;
+        }
+        input {
+            flex-basis: 70%;
+        }
+    }
 }
 
 .hover {

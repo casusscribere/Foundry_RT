@@ -140,7 +140,6 @@ export class RollDialog extends Dialog {
         this.initCalc(html);
         let id = html.find('#author')[0].value;
         let actor = game.actors.get(id);
-        console.log("found actor: ",actor);
 
         if (actor.type == "character" && html.find('#status-fp')[0].checked === true)
         {
@@ -151,7 +150,6 @@ export class RollDialog extends Dialog {
             actor.update({"data.vitals.fatepoints.value" : actor.data.data.vitals.fatepoints.value - 1});
             html.find('#fpspent')[0].checked = true;
             ui.notifications.notify("Fate Point subtracted");
-            console.log("bound mod initial: ", html.find('#boundmod')[0].value)+10;
             html.find('#boundmod')[0].value = Math.min(parseInt(html.find('#boundmod')[0].value)+10,60);
             html.find('#modifier')[0].value = html.find('#modifier')[0].value+10;
           }
@@ -160,11 +158,6 @@ export class RollDialog extends Dialog {
           html.find('#fpspent')[0].checked = false;
           ui.notifications.notify("Fate Point restored");
         }
-        //console.log("this is the data: ",this.data);
-        //let test = game.messages.get(html.attr("data-message-id")).getTest();
-        //console.log("this is the actor: ",this.data.actor);
-        //if(html.find('#status-fp')[0].checked === true) //deduct
-        //else  //add fp
       });
 
 

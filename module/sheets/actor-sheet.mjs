@@ -101,7 +101,7 @@ export class RTActorSheet extends ActorSheet {
           i.data.isRight = true;
         }
         //TODO: un-hardcode this characteristic lookup
-        i.data.value      = context.data.characteristics['intelligence'].value + rt.rankVal[i.data.rank];
+        i.data.value      = context.data.characteristics['intelligence'].value + rt.rankVal[i.data.rank] + i.data.miscmods;
         i.data.unnatural  = context.data.characteristics['intelligence'].unnatural;
         i.data.bonus      = context.data.characteristics['intelligence'].bonus;
         lores.push(i);
@@ -209,15 +209,14 @@ export class RTActorSheet extends ActorSheet {
   async _onCharacteristicClick(event) {
     event.preventDefault();
     const characteristic = $(event.currentTarget).data("characteristic");
-    let test = await this.actor.setupCharacteristicTest(characteristic);
+    let test = await this.actor.setupCharacteristicTest(characteristic, this.actor);
     await test.rollTest();
     test.sendToChat()
   }
   async _onSkillClick(event) {
     event.preventDefault();
     const skill = $(event.currentTarget).data("skill");
-    console.log("skill: ",skill);
-    let test = await this.actor.setupSkillTest(skill);
+    let test = await this.actor.setupSkillTest(skill, this.actor);
     await test.rollTest();
     test.sendToChat()
   }
@@ -226,8 +225,7 @@ export class RTActorSheet extends ActorSheet {
     event.preventDefault();
     const li = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(li.data("itemId"));
-    console.log("onWeaponClick: ", item);
-    let test = await this.actor.setupWeaponTest(item);
+    let test = await this.actor.setupWeaponTest(item, this.actor);
     await test.rollTest();
     test.sendToChat()
   }

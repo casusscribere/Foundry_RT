@@ -8,6 +8,7 @@ import { RTItemSheet } from "./sheets/item-sheet.mjs";
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { ROGUETRADER } from "./helpers/config.mjs";
 import { RTTest } from "./helpers/tests/test.mjs";
+import { RTWeaponTest } from "./helpers/tests/weapon-test.mjs";
 import { RTUtility } from "./helpers/utility.mjs";
 //import { hooks } from "./hooks/hooks.js";
 import FoundryOverrides from "./helpers/overrides.js"
@@ -134,14 +135,15 @@ Hooks.once("ready", async function() {
 });
 
 Hooks.on("renderChatMessage", (message, html, data) => {
-  /*console.log("triggered RCM hook!");
-  //deduct FP
-  let test = game.messages.get(html.attr("data-message-id")).getTest();
-  if(test && test.data.testData.core.fp===true && test.data.context.deducted===false){
-    const func = () => {};
-    deductFP(html,func);
-  }*/
+
 });
+
+//supports damage toggle in chatboxes
+Hooks.on("init", () => {
+  $(document).on('click', '.rt-toggledamage', function (e) { 
+    $(e.target).siblings().toggle();
+  })
+})
 
 Hooks.on("getChatLogEntryContext", (html, options) => {
 
@@ -183,7 +185,6 @@ Hooks.on("getChatLogEntryContext", (html, options) => {
       condition: canFPReroll,
       callback: async li => {
           let message = game.messages.get(li.attr("data-message-id"));
-          console.log("message in callback: ",message);
           let test = message.getTest();
           let actor = test.actor;
           if (actor.type == "character")

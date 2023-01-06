@@ -6,6 +6,7 @@ import { ROGUETRADER } from "../helpers/config.mjs";
 import { RollDialog } from "../helpers/dialogs/base-dialog.js";
 import { AttackDialog } from "../helpers/dialogs/attack-dialog.js";
 import { RTTest } from "../helpers/tests/test.mjs";
+import { RTWeaponTest } from "../helpers/tests/weapon-test.mjs";
 export class RTActor extends Actor {
   
 
@@ -23,7 +24,6 @@ export class RTActor extends Actor {
     // Data modifications in this step occur before processing embedded
     // documents or derived data.
     const actorData = this.data;
-    //console.log("actor data: ", actorData);
     this._organizeCharacteristics(actorData);
     this._organizeSkills(actorData);
   }
@@ -135,10 +135,11 @@ export class RTActor extends Actor {
   }
 
   //NEW Roll Dialog
-  async setupCharacteristicTest(attribute, options = {}) {
+  async setupCharacteristicTest(attribute, actor, options = {}) {
     const rt = ROGUETRADER;
     let attributeObject = this.data.data.characteristics[attribute];
     let dialogData = this._baseDialogData();
+    dialogData.name           = actor.name;
     dialogData.id             = this.data._id;
     dialogData.title          = `${rt.Attributes[attribute].name} Test`;
     dialogData.abbrev         = rt.Attributes[attribute].abbrev;
@@ -152,17 +153,19 @@ export class RTActor extends Actor {
     let testData = await RollDialog.create(dialogData);
     testData.targets = dialogData.targets;
     testData.title = dialogData.title;
+    testData.actor = actor.name;
+    testData.ownername  = actor.name;
     testData.speaker = this.speakerData();
     testData.attribute = attribute;
     return new RTTest(testData);
   }
-  async setupSkillTest(skill, options = {}) {
+  async setupSkillTest(skill, actor, options = {}) {
     const rt = ROGUETRADER;
-    console.log("here's the data object: ",this.data._id);
-    let skillObject = this.data.data.skills[skill];
+    let skillObject = this.system.skills[skill];
     let dialogData = this._baseDialogData();
     dialogData.id = this.data._id;
-    if(skillObject == undefined){
+    dialogData.name = actor.name;
+    if(skillObject === undefined){
       skillObject = this.data.items.find(element => element.name == skill).data;
       if(skillObject == undefined) console.log("SKILL LOOKUP FUCKED");
       dialogData.title          = `${rt.specialistSkillOptions[skillObject.data.category].name}(${skillObject.name}) Test`;
@@ -176,7 +179,7 @@ export class RTActor extends Actor {
       dialogData.title          = `${rt.Skills[skill].name} Test`;
       dialogData.abbrev         = rt.Attributes[rt.Skills[skill].attribute].abbrev;
       dialogData.value          = skillObject.value;
-      dialogData.unnatural      = skillObject.unnatural;
+      dialogData.unnatural      = this.system.characteristics[rt.Skills[skill].attribute].unnatural;
       dialogData.bonus          = skillObject.bonus;
       dialogData.sheetmodifiers = skillObject.miscmods+skillObject.conditions;
       dialogData.etc = 0;
@@ -184,22 +187,21 @@ export class RTActor extends Actor {
 
     if(dialogData.sheetmodifiers > 60 || dialogData.sheetmodifiers < -60) dialogData.bound = true;
     else dialogData.bound = false; 
-    console.log("unnatural value dialog: ",dialogData.unnatural);
     let testData = await RollDialog.create(dialogData);
     testData.targets = dialogData.targets;
     testData.title = dialogData.title;
+    testData.ownername  = actor.name;
     testData.speaker = this.speakerData();
     if (rt.Skills[skill]) testData.attribute = rt.Skills[skill].attribute;
     else testData.attribute = "intelligence";
-    console.log("unnatural value: ",testData.unnatural);
     return new RTTest(testData);
   }
 
-  async setupWeaponTest(weapon, options = {}) {
+  async setupWeaponTest(weapon, actor, options = {}) {
+    console.log("setting up weapon test!", actor);
     const rt = ROGUETRADER;
-    console.log("SetupWeaponTest: ", weapon);
-    console.log("this data: ",this.data);
     let dialogData = this._baseDialogData();
+    dialogData.name = actor.name;
     let weaponObject = weapon.system;
     let attributeObject;
     dialogData.attribute      = {};
@@ -231,7 +233,6 @@ export class RTActor extends Actor {
       attributeObject.name = 'ballisticskill';
       dialogData.disprof = weaponObject.rof.single+'/'+weaponObject.rof.semi+'/'+weaponObject.rof.full;
     }
-    console.log("Attribute Object: ",attributeObject);
     if(attributeObject){
       dialogData.abbrev         = rt.Attributes[attributeObject.name].abbrev;
       dialogData.value          = attributeObject.base+attributeObject.adjustment;
@@ -246,8 +247,9 @@ export class RTActor extends Actor {
     testData.targets = dialogData.targets;
     testData.title = dialogData.title;
     testData.speaker = this.speakerData();
+    testData.ownername  = actor.name;
     testData.attribute = attributeObject.name;
-    return new RTTest(testData);
+    return new RTWeaponTest(testData);
   }
 
   //NEW Dialog data

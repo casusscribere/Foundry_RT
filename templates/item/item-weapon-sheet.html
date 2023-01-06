@@ -36,7 +36,7 @@
                 <select name="data.spec" class="spec">
                     {{#select data.spec}}
                     {{#each (config "WeaponSpecs" )as |option key|}}
-                    <option value="{{key}}">{{option}}</option>
+                    <option value="{{key}}">{{option.name}}</option>
                     {{/each}}
                     {{/select}}
                 </select>

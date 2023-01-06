@@ -80,13 +80,11 @@ export class RTItemSheet extends ItemSheet {
       let preset = $(ev.currentTarget)[0].value;
       if(preset !== "CUSTOM"){
         let item = this.item;
-        console.log("item here:",item);
         let name, text, tier, aptitudes1, aptitudes2, prereqs, shortdesc;
         switch(item.data.type) {
           case 'lore':
             //TODO: FIX THIS
             let lore  = ROGUETRADER[ROGUETRADER.specialistNameCat[item.data.system.category]][preset];
-            console.log("lore: ",lore);
             name = lore.name;
             text = lore.desc;
             this.item.update({"name" : name});
@@ -94,7 +92,6 @@ export class RTItemSheet extends ItemSheet {
             break;
           case 'talent':
             let talent = ROGUETRADER.CoreTalents[preset];
-            console.log("talent here: ",talent);
             name = talent.name;
             tier = talent.tier;
             aptitudes1 = talent.aptitudes[0];

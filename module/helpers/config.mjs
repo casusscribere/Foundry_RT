@@ -375,28 +375,28 @@ ROGUETRADER.WeaponClasses = {
 }
 
 ROGUETRADER.WeaponClassesNew = {
-  'melee'   : {name:'Melee',    icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'thrown'  : {name:'Thrown',   icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'pistol'  : {name:'Pistol',   icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'basic'   : {name:'Basic',    icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'heavy'   : {name:'Heavy',    icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'vehicle' : {name:'Vehicle',  icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
-  'sniper'  : {name:'Sniper',   icon:'<a class="" title="Weapon Type"><i class="fa-sharp fa-solid fa-crosshairs-simple"></i></a>'},
+  'melee'   : {name:'Melee',    },
+  'thrown'  : {name:'Thrown',   },
+  'pistol'  : {name:'Pistol',   },
+  'basic'   : {name:'Basic',    },
+  'heavy'   : {name:'Heavy',    },
+  'vehicle' : {name:'Vehicle',  },
+  'sniper'  : {name:'Sniper',   },
 }
 
-//TODO: alter to {name: } format instead
+//TODO: configure lists to filter valid options by category
 ROGUETRADER.WeaponSpecs = {
-  'bolt'            :'Bolt',
-  'chain'           :'Chain',
-  'flame'           :'Flame',
-  'las'             :'Las',
-  'launcher'        :'Launcher',
-  'melta'           :'Melta',
-  'plasma'          :'Plasma',
-  'power'           :'Power',
-  'lowtech'         :'Low-Tech',
-  'shock'           :'Shock',
-  'solidprojectile' :'Solid Projectile'
+  'bolt'            :{name:'Bolt',              valid:'ranged'},
+  'chain'           :{name:'Chain',             valid:'melee'},
+  'flame'           :{name:'Flame',             valid:'ranged'},
+  'las'             :{name:'Las',               valid:'ranged'},
+  'launcher'        :{name:'Launcher',          valid:'ranged'},
+  'melta'           :{name:'Melta',             valid:'ranged'},
+  'plasma'          :{name:'Plasma',            valid:'ranged'},
+  'power'           :{name:'Power',             valid:'ranged'},
+  'lowtech'         :{name:'Low-Tech',          valid:'all'},
+  'shock'           :{name:'Shock',             valid:'melee'},
+  'solidprojectile' :{name:'Solid Projectile',  valid:'ranged'},
 }
 
 ROGUETRADER.WeaponReloads = {
