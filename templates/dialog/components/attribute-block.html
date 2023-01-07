@@ -1,0 +1,34 @@
+<div class="block">
+    <table>
+        <tr>
+            <th rowspan="2" class="leftheader"><label id="abbr">{{ abbrev }}</label></th>
+            <th>Stat</th>
+            <th>Unnat</th>
+            <th>Bound Mod</th>
+            <th>Difficulty</th>
+            <th>Etc Mods</th>
+            <th>Misc Mods</th>
+        </tr>
+        <tr>
+            <td><input disabled id="value" type="number" value="{{value}}" data-dtype="Number" /></td>
+            <td><input disabled id="unnatural" type="number" value="{{unnatural}}" data-dtype="Number" /></td>
+            <td>
+                <input disabled id="boundmod" type="number" value="{{boundmod}}" data-dtype="Number" />
+                <input disabled id="modifier" type="number" value="{{modifier}}" data-dtype="Number" style="visibility:hidden; position:absolute;"/>
+            </td>
+            <td><select id="diff" class="modsum">
+                {{#select difficulty}}
+                {{#each (config "testDiff" )as |diff d|}}
+                {{#if diff }}
+                <option value="{{diff}}">{{d}}</option>
+                {{else}}
+                <option value="{{diff}}" selected>{{d}}</option>
+                {{/if}}
+                {{/each}}
+                {{/select}}
+            </select></td>
+            <td><input id="etc"             class="modsum" type="number" value="{{etc}}"                data-dtype="Number" /></td>
+            <td><input id="sheet-modifiers" class="modsum" type="number" value="{{sheetmodifiers}}"    data-dtype="Number" disabled /></td>
+        </tr>
+    </table>
+</div>

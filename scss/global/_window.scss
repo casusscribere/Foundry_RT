@@ -69,7 +69,7 @@
         text-align: center;
     }
   
-    input[type="text"] {
+    /*input[type="text"] {
         background: var(--image-input) 0 100% repeat;
         border: 1px solid var(--color-black);
         border-radius: 0;
@@ -79,7 +79,40 @@
         font-size: 14px;
         font-family: var(--font-text);
         text-align: center;
+    }*/
+  }
+
+  .leftheader {
+    min-width: 50px;
+    padding: 10px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+
+  .flex-table {
+    tr {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      td {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+        flex-shrink: 1;
+  
+        div, input {
+          flex-grow: 1;
+          flex-shrink: 1;
+        }
+
+        input {
+          display: inline-block;
+          width: 50px;
+        }
+      }
     }
+
   }
 }
 

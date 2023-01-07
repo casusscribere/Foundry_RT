@@ -17,5 +17,10 @@
     "systems/roguetrader/templates/chat/roll/components/header.html",
     "systems/roguetrader/templates/chat/roll/components/dos.html",
     "systems/roguetrader/templates/chat/roll/components/results.html",
+    //Dialog partials
+    "systems/roguetrader/templates/dialog/components/attribute-block.html",
+    "systems/roguetrader/templates/dialog/components/actions-block.html",
+    "systems/roguetrader/templates/dialog/components/warnings-block.html",
+    "systems/roguetrader/templates/dialog/components/weapon-block.html",
   ]);
 };

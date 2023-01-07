@@ -15,7 +15,7 @@ export class AttackDialog extends RollDialog {
     }
   
     static async create(data) {
-      const html = await renderTemplate("systems/roguetrader/templates/dialog/attack-roll.html", data);
+      const html = await renderTemplate("systems/roguetrader/templates/dialog/tests/weapon-test.html", data);
       return new Promise((resolve) => {
         new this({
           title: data.title,

@@ -4,6 +4,7 @@
  */
 import { ROGUETRADER } from "../helpers/config.mjs";
 import { RollDialog } from "../helpers/dialogs/base-dialog.js";
+import { SkillDialog } from "../helpers/dialogs/skill-dialog.js";
 import { AttackDialog } from "../helpers/dialogs/attack-dialog.js";
 import { RTTest } from "../helpers/tests/test.mjs";
 import { RTWeaponTest } from "../helpers/tests/weapon-test.mjs";
@@ -187,7 +188,7 @@ export class RTActor extends Actor {
 
     if(dialogData.sheetmodifiers > 60 || dialogData.sheetmodifiers < -60) dialogData.bound = true;
     else dialogData.bound = false; 
-    let testData = await RollDialog.create(dialogData);
+    let testData = await SkillDialog.create(dialogData);
     testData.targets = dialogData.targets;
     testData.title = dialogData.title;
     testData.ownername  = actor.name;

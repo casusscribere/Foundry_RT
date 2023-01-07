@@ -1,0 +1,33 @@
+<div class="block">
+    <table class="">
+        <tr>
+            <th class="leftheader" rowspan="2">
+                {{#if (isWeaponClass class "melee")}}
+                <i class="fa-solid fa-swords"></i>
+                {{else if (isWeaponClass class "thrown")}}
+                <i class="fa-solid fa-bomb"></i>
+                {{else if (isWeaponClass class "pistol")}}
+                <i class="fa-solid fa-gun"></i>
+                {{else if (isWeaponClass class "vehicle")}}
+                <i class="fa-solid fa-jet-fighter-up"></i>
+                {{else}}
+                <i class="fa-sharp fa-solid fa-crosshairs-simple"></i>
+                {{/if}}
+            </th>
+            <th>Range</th>
+            <th>RoF</th>
+            <th>Damage</th>
+            <th>Clip</th>
+            <th>Special</th>
+            <th>Mods</th>
+        </tr>
+        <tr>
+            <td><input disabled id="range"           value="{{disprange}}"      type="text"   data-dtype="String" /></td>
+            <td><input disabled id="disprof"         value="{{disprof}}"        type="text"   data-dtype="String" /></td>
+            <td><input disabled id="dispdamage"      value="{{dispdamage}}"     type="text"   data-dtype="String" /></td>
+            <td><input disabled id="dispclip"        value="{{dispclip}}"       type="text"   data-dtype="String" /></td>
+            <td><input disabled id="dispspecials"    value="{{specialsstring}}" type="text"   data-dtype="String" /></td>
+            <td><input disabled id="dispmods"        value="{{dispmods}}"       type="text"   data-dtype="String" /></td>
+        </tr>
+    </table>
+</div>

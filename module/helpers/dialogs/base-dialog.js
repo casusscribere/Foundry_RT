@@ -1,5 +1,3 @@
-//import WrathAndGloryEffect from "../effect.js";
-
 export class RollDialog extends Dialog {
 
     static get defaultOptions() {
@@ -30,7 +28,7 @@ export class RollDialog extends Dialog {
     }
   
     static async create(data) {
-      const html = await renderTemplate("systems/roguetrader/templates/dialog/common-roll.html", data);
+      const html = await renderTemplate("systems/roguetrader/templates/dialog/tests/characteristic-test.html", data);
       return new Promise((resolve) => {
         new this({
           title: data.title,
