@@ -449,7 +449,8 @@ ROGUETRADER.WeaponSpecialQualities = {
   'twinlinked'      : {name:'Twin-Linked',    hasval:false},
   'unbalanced'      : {name:'Unbalanced',     hasval:false},
   'unreliable'      : {name:'Unreliable',     hasval:false},
-  'unwieldy'        : {name:'Vengeful',       hasval:true},
+  'unwieldy'        : {name:'Unwieldy',       hasval:false},
+  'vengeful'        : {name:'Vengeful',       hasval:true}
 }
 
 ROGUETRADER.ItemOrigins = {
