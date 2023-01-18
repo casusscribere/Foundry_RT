@@ -101,7 +101,7 @@ export class RTActorSheet extends ActorSheet {
           i.data.isRight = true;
         }
         //TODO: un-hardcode this characteristic lookup
-        i.data.value      = context.data.characteristics['intelligence'].value + rt.rankVal[i.data.rank] + i.data.miscmods;
+        i.data.value      = context.data.characteristics['intelligence'].value + rt.rankVal[i.data.rank];
         i.data.unnatural  = context.data.characteristics['intelligence'].unnatural;
         i.data.bonus      = context.data.characteristics['intelligence'].bonus;
         lores.push(i);

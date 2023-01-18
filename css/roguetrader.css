@@ -123,6 +123,18 @@ $c-tan: #444;
       text-align: center;
   }*/
 }
+.test-dialog .pill .left, .test-dialog .pill .right {
+  width: 50%;
+  padding-right: 5%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.test-dialog .pill input[type=checkbox] {
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+}
 .test-dialog .pill label {
   background-color: var(--color-black);
   color: var(--color-white);

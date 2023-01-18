@@ -8,9 +8,57 @@
   </header>
 
   {{!-- Sheet Body --}}
-    <section class="sheet-body">
-        <h1 id="title" style="display:none;">{{json item}}</h1>
-        <div class="wrapper-row">
+    <section class="sheet-body item-sheet test-dialog">
+        <table class="">
+            <tr>
+                <th class="leftheader" rowspan="2">
+                    {{#if (isWeaponClass data.class "melee")}}
+                    <i class="fa-solid fa-swords"></i>
+                    {{else if (isWeaponClass data.class "thrown")}}
+                    <i class="fa-solid fa-bomb"></i>
+                    {{else if (isWeaponClass data.class "pistol")}}
+                    <i class="fa-solid fa-gun"></i>
+                    {{else if (isWeaponClass data.class "vehicle")}}
+                    <i class="fa-solid fa-jet-fighter-up"></i>
+                    {{else}}
+                    <i class="fa-sharp fa-solid fa-crosshairs-simple"></i>
+                    {{/if}}
+                </th>
+                {{#if (isWeaponClass data.class "melee")}}
+                {{else }}
+                <th             style="width: 50px;"><label>Range</label></th>
+                <th colspan="3" style="width: 60px;"><label>RoF</label></th>
+                {{/if}}
+                <th colspan="3" style="width: 100px;"><label>Dmg(Xd10+Y)</label></th>
+                <th><label>Pen</label></th>
+                {{#if (isWeaponClass data.class "melee")}}
+                {{else }}
+                <th colspan="3" style="width: 60px;"><label>Clip</label></th>
+                {{/if}}
+                <th><label>Special Qualities<a class="item-specials"><i class="fas fa-cog"></i></a></label> </th>
+            </tr>
+            <tr>
+                {{#if (isWeaponClass data.class "melee")}}
+                {{else }}
+                <td><input type="number"    title="range"       name="data.range"           value="{{data.range}}"          data-dtype="Number"></td>
+                <td><input type="text"      title="rofsingle"   name="data.rof.single"      value="{{data.rof.single}}"     data-dtype="Text"></td>
+                <td><input type="number"    title="rofsemi"     name="data.rof.semi"        value="{{data.rof.semi}}"       data-dtype="Number"></td>
+                <td><input type="number"    title="roffull"     name="data.rof.full"        value="{{data.rof.full}}"       data-dtype="Number"></td>
+                {{/if}}
+                <td><input type="number"    title="dmgdice"     name="data.damage.dice"     value="{{data.damage.dice}}"    data-dtype="Number"></td>
+                <td><input type="number"    title="dmgstatic"   name="data.damage.static"   value="{{data.damage.static}}"  data-dtype="Number"></td>
+                <td><input type="text"      title="dmgtype"     name="data.damage.type"     value="{{data.damage.type}}"    data-dtype="Text"></td>
+                <td><input type="number"    title="penetration" name="data.penetration"     value="{{data.penetration}}"    data-dtype="Number"></td>
+                {{#if (isWeaponClass data.class "melee")}}
+                {{else }}
+                <td><input type="number"    title="clipcur"     name="data.clip.cur"        value="{{data.clip.cur}}"       data-dtype="Number"></td>
+                <td><input type="number"    title="clipmax"     name="data.clip.max"        value="{{data.clip.max}}"       data-dtype="Number"></td>
+                <td><input type="number"    title="clipext"     name="data.clip.ext"        value="{{data.clip.ext}}"       data-dtype="Number"></td>
+                {{/if}}
+                <td><input disabled type="text" value="{{data.specialsstring}}" /></td>
+            </tr>
+        </table>
+        <!--<div class="wrapper-row">
             <div class="pill">
                 <label>Class</label>
                 <select name="data.class" class="class">
@@ -97,23 +145,12 @@
             </div>
         </div>
         <div class="wrapper-row">
-            <!--<div class="pill">
-                <label>Special</label>
-                <select name="data.special" class="special">
-                    {{#select data.special}}
-                    {{#each (config "WeaponSpecialQualities" )as |option key|}}
-                    <option value="{{key}}">{{option.name}}</option>
-                    {{/each}}
-                    {{/select}}
-                </select>
-                <input type="number" title="specialval" name="data.specialval" value="{{data.specialval}}" data-dtype="Number">
-            </div>-->
             <div class="item-form-group stacked">
                 <label>Special Qualities<a class="item-specials"><i class="fas fa-cog"></i></a></label>            
                 <div class="item-form-inputs">
                   <input disabled type="text" value="{{data.specialsstring}}" />
                 </div>
             </div>
-        </div>
+        </div>-->
   </section>
 </form>

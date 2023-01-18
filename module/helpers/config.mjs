@@ -409,6 +409,13 @@ ROGUETRADER.WeaponReloads = {
   '3full'   :'3 Full',
 }
 
+ROGUETRADER.RangeBrackets = {
+  'pointblank': {name: 'Point-Blank'},
+  'short'     : {name: 'Short'},
+  'normal'    : {name: 'Normal'},
+  'long'      : {name: 'Extreme'},
+}
+
 ROGUETRADER.WeaponSpecialQualities = {
   'na'              : {name:'N/A',            hasval:false},
   'accurate'        : {name:'Accurate',       hasval:false},

@@ -14,19 +14,40 @@
                 <i class="fa-sharp fa-solid fa-crosshairs-simple"></i>
                 {{/if}}
             </th>
-            <th>Range</th>
-            <th>RoF</th>
-            <th>Damage</th>
-            <th>Clip</th>
+            {{#if (isWeaponClass class "melee")}}
+            {{else }}
+            <th style="width: 50px;">Range</th>
+            <th>Bracket</th>
+            <th style="width: 60px;">RoF</th>
+            {{/if}}
+            <th style="width: 100px;">Damage</th>
+            {{#if (isWeaponClass class "melee")}}
+            {{else }}
+            <th style="width: 60px;">Clip</th>
+            {{/if}}
             <th>Special</th>
             <th>Mods</th>
         </tr>
         <tr>
+            {{#if (isWeaponClass class "melee")}}
+            {{else }}
             <td><input disabled id="range"           value="{{disprange}}"      type="text"   data-dtype="String" /></td>
+            <td><select id="rangebracket" class="">
+                {{#select difficulty}}
+                {{#each (config "RangeBrackets" )as |bracket b|}}
+                <option value="{{bracket}}">{{bracket.name}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+            </td>
             <td><input disabled id="disprof"         value="{{disprof}}"        type="text"   data-dtype="String" /></td>
+            {{/if}}
             <td><input disabled id="dispdamage"      value="{{dispdamage}}"     type="text"   data-dtype="String" /></td>
+            {{#if (isWeaponClass class "melee")}}
+            {{else }}
             <td><input disabled id="dispclip"        value="{{dispclip}}"       type="text"   data-dtype="String" /></td>
-            <td><input disabled id="dispspecials"    value="{{specialsstring}}" type="text"   data-dtype="String" /></td>
+            {{/if}}
+            <td><input disabled id="dispspecials"    value="{{dispspecials}}"   type="text"   data-dtype="String" /></td>
             <td><input disabled id="dispmods"        value="{{dispmods}}"       type="text"   data-dtype="String" /></td>
         </tr>
     </table>

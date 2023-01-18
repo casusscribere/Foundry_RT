@@ -199,7 +199,7 @@ export class RTActor extends Actor {
   }
 
   async setupWeaponTest(weapon, actor, options = {}) {
-    console.log("setting up weapon test!", actor);
+    console.log("setting up weapon test!", weapon);
     const rt = ROGUETRADER;
     let dialogData = this._baseDialogData();
     dialogData.name = actor.name;
@@ -211,7 +211,8 @@ export class RTActor extends Actor {
     dialogData.class          = weaponObject.class;
     dialogData.spec           = weaponObject.spec;
     dialogData.craftsmanship  = weaponObject.craftsmanship;
-    dialogData.range          = weaponObject.range;
+    dialogData.activerange    = '';
+    dialogData.wpnrange       = weaponObject.range;
     dialogData.disprange      = weaponObject.range+'m';
     dialogData.rof            = weaponObject.rof;
     dialogData.damage         = weaponObject.damage;
@@ -219,19 +220,21 @@ export class RTActor extends Actor {
     dialogData.penetration    = weaponObject.penetration;
     dialogData.clip           = weaponObject.clip;
     dialogData.dispclip       = weaponObject.clip.cur+'/'+weaponObject.clip.max+'/'+weaponObject.clip.ext;
-    dialogData.special        = weaponObject.special;
-    dialogData.dispspecials   = weaponObject.special;
+    dialogData.special        = weaponObject.specialqualities;
+    dialogData.dispspecials   = weaponObject.specialsstring;
     dialogData.ammo           = '';
     dialogData.mods           = '';
     dialogData.dispmods       = '';
     if(dialogData.class==='melee') {
       attributeObject = this.data.system.characteristics['weaponskill'];
       attributeObject.name = 'weaponskill';
+      dialogData.mor = 'melee';
       dialogData.disprof = 'M';
     }
     else {
       attributeObject = this.data.system.characteristics['ballisticskill'];
       attributeObject.name = 'ballisticskill';
+      dialogData.mor = 'ranged';
       dialogData.disprof = weaponObject.rof.single+'/'+weaponObject.rof.semi+'/'+weaponObject.rof.full;
     }
     if(attributeObject){

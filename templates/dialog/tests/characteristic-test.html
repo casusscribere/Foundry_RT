@@ -1,6 +1,12 @@
 <section class="test-dialog characteristic-test">
     <h1 id="title">{{title}}</h1>
     {{> "systems/roguetrader/templates/dialog/components/attribute-block.html"}}
-    {{> "systems/roguetrader/templates/dialog/components/actions-block.html"}}
-    {{> "systems/roguetrader/templates/dialog/components/warnings-block.html"}}
+    <div class="pill">
+        <div class="left">
+            {{> "systems/roguetrader/templates/dialog/components/actions-block.html"}}
+        </div>
+        <div class="right">
+            {{> "systems/roguetrader/templates/dialog/components/warnings-block.html"}}
+        </div>
+    </div>
 </section>

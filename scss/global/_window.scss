@@ -46,7 +46,22 @@
   .pill {
     display: flex;
     flex-direction: row;
+
+    .left, .right {
+      width: 50%;
+      padding-right: 5%;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    input[type="checkbox"] {
+      margin: 0;
+      width: 30px;
+      height: 30px;
+      flex: 0 0 30px;
+    }
   
+
     label {
         background-color: var(--color-black);
         color: var(--color-white);
