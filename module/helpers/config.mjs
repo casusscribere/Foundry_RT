@@ -459,6 +459,13 @@ ROGUETRADER.WeaponSpecialQualities = {
   'unwieldy'        : {name:'Vengeful',       hasval:true},
 }
 
+ROGUETRADER.WeaponDamageTypes = {
+  'energy'    : {name:'Energy',     abbrev:'E'},
+  'explosive' : {name:'Explosive',  abbrev:'X'},
+  'impact'    : {name:'Impact',     abbrev:'I'},
+  'rending'   : {name:'Rending',    abbrev:'R'},
+}
+
 ROGUETRADER.ItemOrigins = {
   'custom'  :'CUSTOM',
   'human'   :'Human(*)',

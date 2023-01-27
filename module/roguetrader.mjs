@@ -12,6 +12,11 @@ import { RTWeaponTest } from "./helpers/tests/weapon-test.mjs";
 import { RTUtility } from "./helpers/utility.mjs";
 //import { hooks } from "./hooks/hooks.js";
 import FoundryOverrides from "./helpers/overrides.js"
+//TODO below declarations are for a v11 example that doesn't work here
+// Import New Subtype for Journal Pages
+//import QuestModel from "./types/QuestModel.mjs";
+import { RTJournalSheet } from "./sheets/journal-sheet.mjs";
+import { SystemJournalSheet } from "./sheets/system-sheet.mjs";
 
 function deductFP(target, actionCallback){
   let message = game.messages.get(target.attr("data-message-id"));
@@ -51,6 +56,9 @@ Hooks.once('init', async function() {
     rollItemMacro,
   };
 
+  //DEBUG: only for testing
+  CONFIG.debug.hooks = true;
+
   // Add custom constants for configuration.
   CONFIG.ROGUETRADER = ROGUETRADER;
 
@@ -79,6 +87,10 @@ Hooks.once('init', async function() {
   Actors.registerSheet("roguetrader", RTActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("roguetrader", RTItemSheet, { makeDefault: true });
+  //TODO: figure out how to build a Journal sheet via actually finding an example that does it
+  //Journal.unregisterSheet("core",JournalPageSheet);
+  Journal.registerSheet("roguetrader",RTJournalSheet, { makeDefault: true});
+  Journal.registerSheet("roguetrader",SystemJournalSheet);
 
   // Preload Handlebars templates.
   return preloadHandlebarsTemplates();
@@ -128,6 +140,43 @@ Handlebars.registerHelper('isWeaponClass', function(weaponclass, checkedclass) {
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
+
+//TODO: this is from a v11 example and doesn't work :(
+Hooks.on('getJournalSheetHeaderButtons', function(app, buttons) {
+  if (app.document.testUserPermission(game.user, 3) && app.object._getSheetClass().name !== 'SystemJournal') {
+    buttons.unshift({
+      label: "System",
+      class: "entry-system",
+      icon: "fas fa-pen-alt",
+      onclick: async ev => _excaRenderSheet(app)
+    });
+  }
+});
+
+async function _excaRenderSheet(app) {
+  const sheet = app.object.sheet;
+  await sheet.close()
+  app.object._sheet = null;
+  delete app.object.apps[sheet.appId];
+  await app.document.setFlag('core', 'sheetClass', `system-journals.SystemJournal`);
+  app.object.sheet.render(true);
+}
+  /*
+Hooks.on("init", () => {
+  Object.assign(CONFIG.JournalEntryPage.dataModels, {
+    "quest-pages.quest": QuestModel
+  });
+});
+
+Hooks.on("init", () => {
+  DocumentSheetConfig.registerSheet(JournalEntryPage, "quest-pages", QuestSheet, {
+    types: ["quest-pages.quest"],
+    makeDefault: true
+  });
+});
+*/
+// End: test hooks for subtype
+
 
 Hooks.once("ready", async function() {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
